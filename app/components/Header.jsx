@@ -6,6 +6,8 @@ import { RxCalendar } from "react-icons/rx";
 import { FaBars } from "react-icons/fa6";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import { scrollToSection } from "./scrollToSection";
+import Link from "next/link";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,9 +16,9 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md max-w-[1400px] mx-auto">
+    <header className="bg-white shadow-md max-w-[1400px] mx-auto sticky top-0 z-50">
       {/* Top Header */}
-      <div className="lg:flex items-center justify-between space-x-4 px-10 py-4 border-b border-gray-200 hidden">
+      <div className=" items-center justify-between space-x-4 px-10 py-4 border-b border-gray-200 hidden">
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-2">
             <FiPhoneCall className="text-customBlue" />
@@ -38,24 +40,33 @@ const Header = () => {
       </div>
 
       {/* Main Header */}
-      <div className="flex items-center justify-between lg:px-8 p-4 lg:py-6 sticky top-0 bg-white z-50 shadow-md">
+      <div className="flex items-center justify-between lg:px-8 p-4 lg:py-6  top-0 bg-white z-50 shadow-md">
         {/* Logo Section */}
-        <div className="flex items-center">
-          <Image src="/logo.webp" alt="logo" width={50} height={50} />
-          <h1 className="text-xl lg:text-2xl text-customBlue font-medium">
-            Creative Dental Surgery
-          </h1>
-        </div>
+        <Link href="/">
+          <div className="flex items-center">
+            <Image src="/logo.webp" alt="logo" width={50} height={50} />
+            <h1 className="text-xl lg:text-2xl text-customBlue font-medium">
+              Creative Dental Surgery
+            </h1>
+          </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="lg:flex items-center space-x-6 hidden">
           <ul className="flex space-x-6 text-gray-700 font-semibold">
-            <li>Home</li>
-            <li>About</li>
+            <Link href="/">
+              <li>Home</li>
+            </Link>
+            <button onClick={() => scrollToSection("about")}>
+              <li>About</li>
+            </button>
             <li>Services</li>
             <li>Contact</li>
           </ul>
-          <button className="bg-customBlue p-4 text-white rounded-lg text-base font-semibold">
+          <button
+            onClick={() => scrollToSection("appointment")}
+            className="bg-customBlue p-4 text-white rounded-lg text-base font-semibold"
+          >
             BOOK APPOINTMENT
           </button>
         </nav>
