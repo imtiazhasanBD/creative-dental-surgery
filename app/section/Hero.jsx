@@ -1,10 +1,11 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { PiPhoneCallFill } from "react-icons/pi";
 import { GrDocumentTime } from "react-icons/gr";
 import Link from "next/link";
 import { scrollToSection } from "../components/scrollToSection";
+import { Typewriter } from "react-simple-typewriter";
 
 const Hero = () => {
   return (
@@ -19,13 +20,26 @@ const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold text-gray-800 uppercase mt-4">
               Your trusted
               <br /> partner for a<br /> healthier <br />
-              <span className="text-customBlue">brighter smile.</span>
+              <span className="text-customBlue">
+                <Typewriter
+                  words={["Brighter Smile", "Gentle Touch", "Healthy Gums", "Confident You"]}
+                  loop={true}
+                  cursor
+                  cursorStyle="."
+                  typeSpeed={60}
+                  deleteSpeed={70}
+                  delaySpeed={1000}
+                />
+              </span>
             </h1>
             <p className="mt-4 text-lg md:text-xl text-gray-800">
               We are ready to help and take care of your dental health.
             </p>
 
-            <button onClick={() => scrollToSection("appointment")} className="mt-6 text-white bg-customBlue px-6 py-3 font-semibold rounded-lg">
+            <button
+              onClick={() => scrollToSection("appointment")}
+              className="mt-6 text-white bg-customBlue px-6 py-3 font-semibold rounded-lg"
+            >
               Book Appointment
             </button>
           </div>

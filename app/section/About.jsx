@@ -7,7 +7,7 @@ import { scrollToSection } from "../components/scrollToSection";
 
 const About = () => {
   return (
-    <section id="about" className="px-2 lg:px-10 mt-72 lg:mt-20">
+    <section id="about" className="px-3 lg:px-10 mt-72 lg:mt-20">
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-28 w-full">
         {/*Image*/}
         <div className="relative lg:w-full my-auto flex flex-col gap-6 ">
@@ -69,9 +69,9 @@ const About = () => {
               <button
                 onClick={() => scrollToSection("appointment")}
                 href="#appointment"
-                className="text-base px-4 py-2 bg-customBlue font-medium text-white mb-2 rounded-2xl"
+                className="mb-2 inline-block bg-customBlue text-white px-6 py-3 font-semibold rounded-lg hover:bg-blue-700 transition-all"
               >
-                Book an Appointment
+                Book Appointment
               </button>
               <Link href="tel:01757338336">
                 <p className="flex gap-3 items-center text-xl font-medium text-center">

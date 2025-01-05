@@ -321,7 +321,7 @@ export default function AppointmentForm() {
           <h3 className="text-2xl font-bold text-customBlue mt-6">
             Convenient Timings
           </h3>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 text-center">
             Our clinic is open from <strong>Saturday to Thursday</strong> at{" "}
             <strong>4:00 PM to 10:00 PM</strong> and <strong>Friday</strong> at{" "} <strong>10:00 AM to 1:00 PM</strong> And <strong>5:00 PM to 10:00 PM</strong> on weekdays.
           </p>
