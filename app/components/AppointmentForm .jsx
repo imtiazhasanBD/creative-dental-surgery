@@ -19,12 +19,19 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import fetchAvailableSlots from "../utility/fetchAvailableSlots";
 import { CiEdit } from "react-icons/ci";
 import { MdEditCalendar } from "react-icons/md";
+import { Button } from "@/components/ui/button"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/hooks/use-toast";
 
 export default function AppointmentForm() {
   const [date, setDate] = useState(addDays(new Date(), 1)); // Tomorrow's date
   const [selectedSlot, setSelectedSlot] = useState("");
   const [availableSlots, setAvailableSlots] = useState([]);
   const [message, setMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const { toast } = useToast()
 
   let allSlots = [
     "4:00 PM",
@@ -40,8 +47,7 @@ export default function AppointmentForm() {
     "9:00 PM",
     "9:30 PM",
   ];
-  console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
-  console.log(process.env.NEXT_PUBLIC_GMAIL_USER);
+
   const fridayExtraSlots = [
     "10:00 AM",
     "10:30 AM",
@@ -109,8 +115,15 @@ export default function AppointmentForm() {
         resetForm();
         setDate(addDays(new Date(), 1));
         setSelectedSlot("");
+        setShowModal(true); 
       } else {
         setMessage(result.message || "Failed to book the appointment.");
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: result.message,
+          action: <ToastAction altText="Try again">Try again</ToastAction>,
+        })
       }
     } catch (error) {
       setMessage("An error occurred. Please try again later.");
@@ -118,6 +131,18 @@ export default function AppointmentForm() {
   };
 
   const isPastDay = (day) => day <= new Date();
+
+     // Lock and unlock scroll based on selectedImage state
+     useEffect(() => {
+      if (showModal) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }, [showModal]);
 
   return (
     <section id="appointment" className="p-2 lg:p-16 mt-20">
@@ -139,7 +164,7 @@ export default function AppointmentForm() {
           <h3 className="text-2xl font-bold mb-4 text-gray-800">
             Fill Out the Form
           </h3>
-          <p className="text-sm text-red-400 text-center">{message}</p>
+          {/* <p className="text-sm text-red-400 text-center">{message}</p> */}
           <Formik
             initialValues={{
               name: "",
@@ -327,6 +352,21 @@ export default function AppointmentForm() {
           </p>
         </div>
       </div>
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <Image src="/animated-check.gif" height={80} width={80} alt="successful" className="mx-auto"/>
+            <h2 className="text-lg font-bold mb-4 text-gray-700">Your Appointment booked successfully!</h2>
+            <h2 className="text-sm font-medium mb-4 text-gray-500">We have sent your booking information to your email address.</h2>
+            <button 
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+              onClick={() => setShowModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
 
     // <form

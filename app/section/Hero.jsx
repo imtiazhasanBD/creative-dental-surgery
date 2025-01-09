@@ -10,7 +10,7 @@ import { Typewriter } from "react-simple-typewriter";
 const Hero = () => {
   return (
     <>
-      <section className="relative py-16 lg:py-24 pb-48 px-6 md:px-12 lg:px-24 bg-blue-100">
+      <section className="relative py-16 pb-40 px-6 md:px-12 lg:px-24 bg-blue-100">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Left Content */}
           <div className="w-full lg:w-1/2">

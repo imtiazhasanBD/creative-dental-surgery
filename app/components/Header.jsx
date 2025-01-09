@@ -8,15 +8,22 @@ import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { scrollToSection } from "./scrollToSection";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import NavbarForMobile from "./NavbarForMobile";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  const pathname = usePathname();
 
   return (
-    <header className="bg-white shadow-md max-w-[1400px] mx-auto sticky top-0 z-50">
+    <header
+      className={`bg-white shadow-md max-w-[1400px] mx-auto sticky top-0 z-50 ${
+        pathname.includes("admin") ? "hidden" : ""
+      }`}
+    >
       {/* Top Header */}
       <div className=" items-center justify-between space-x-4 px-10 py-4 border-b border-gray-200 hidden">
         <div className="flex items-center gap-2">
@@ -45,7 +52,7 @@ const Header = () => {
         <Link href="/">
           <div className="flex items-center">
             <Image src="/logo.webp" alt="logo" width={50} height={50} />
-            <h1 className="text-xl lg:text-2xl text-customBlue font-medium">
+            <h1 className="text-xl lg:text-2xl text-customBlue font-medium hidden md:block">
               Creative Dental Surgery
             </h1>
           </div>
@@ -60,8 +67,12 @@ const Header = () => {
             <button onClick={() => scrollToSection("about")}>
               <li>About</li>
             </button>
-            <li>Services</li>
-            <li>Contact</li>
+            <button onClick={() => scrollToSection("services")}>
+              <li>Services</li>
+            </button>
+            <button onClick={() => scrollToSection("contact")}>
+              <li>Contact</li>
+            </button>
           </ul>
           <button
             onClick={() => scrollToSection("appointment")}
@@ -79,30 +90,9 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 z-40">
-            <div className="bg-white w-64 h-full shadow-lg p-4">
-              {/* Close Icon */}
-              <FaTimes
-                className="text-3xl text-customBlue mb-4"
-                onClick={toggleMobileMenu}
-              />
-
-              {/* Navigation Links */}
-              <ul className="space-y-4 text-gray-700 font-semibold">
-                <li onClick={toggleMobileMenu}>Home</li>
-                <li onClick={toggleMobileMenu}>About</li>
-                <li onClick={toggleMobileMenu}>Services</li>
-                <li onClick={toggleMobileMenu}>Contact</li>
-              </ul>
-              <button
-                className="bg-customBlue mt-6 w-full p-4 text-white rounded-lg text-base font-semibold"
-                onClick={toggleMobileMenu}
-              >
-                BOOK APPOINTMENT
-              </button>
-            </div>
-          </div>
+           <NavbarForMobile isOpen={isMobileMenuOpen} toggleSidebar={toggleMobileMenu}/>
         )}
+        
       </div>
     </header>
   );

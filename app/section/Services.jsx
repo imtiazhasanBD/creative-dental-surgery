@@ -15,7 +15,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const Services = () => {
   return (
-    <section className="py-16 px-2 md:px-12 lg:px-20 bg-gray-50">
+    <section id="services" className="py-16 px-2 md:px-12 lg:px-20 bg-gray-50">
       <div className="text-center mb-12">
         <SectionHeader title="Our Dental Services" style="justify-center"/>
         <p className="text-2xl md:text-5xl font-bold text-gray-700">

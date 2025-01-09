@@ -9,6 +9,11 @@ module.exports = {
   	extend: {
   		colors: {
   			customBlue: '#00adef',
+			  animation: {
+				"spin-slow": "spin 8s linear infinite",
+				"spin-slower": "spin 50s linear infinite",
+				bounce: "bounce 1s infinite",
+			  },
   			'primary-gradient': 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,173,239,1) 0%, rgba(179,224,169,1) 100%)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

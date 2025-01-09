@@ -6,7 +6,7 @@ import { scrollToSection } from '../components/scrollToSection';
 
 const ContactSection = () => {
   return (
-    <section className="py-16 px-4 lg:px-10">
+    <section id='contact' className="py-16 px-4 lg:px-10">
       <div className="container mx-auto flex flex-col lg:flex-row items-center gap-20">
         {/* Left: Google Map */}
         <div className="w-full lg:w-1/2 rounded-xl overflow-hidden shadow-lg">
