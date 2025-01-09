@@ -10,6 +10,7 @@ import { scrollToSection } from "./scrollToSection";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavbarForMobile from "./NavbarForMobile";
+import { GrUserAdmin } from "react-icons/gr";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,19 +81,28 @@ const Header = () => {
           >
             BOOK APPOINTMENT
           </button>
+          <Link href="/admin/dashboard" className="">
+            <GrUserAdmin className="text-xl text-customBlue" />
+          </Link>
         </nav>
 
         {/* Mobile Menu Icon */}
-        <FaBars
-          className="text-3xl text-customBlue lg:hidden"
-          onClick={toggleMobileMenu}
-        />
-
+        <div className="flex gap-2 items-center lg:hidden">
+          <Link href="/admin/dashboard" className="">
+            <GrUserAdmin className="text-xl text-customBlue" />
+          </Link>
+          <FaBars
+            className="text-3xl text-customBlue lg:hidden"
+            onClick={toggleMobileMenu}
+          />
+        </div>
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-           <NavbarForMobile isOpen={isMobileMenuOpen} toggleSidebar={toggleMobileMenu}/>
+          <NavbarForMobile
+            isOpen={isMobileMenuOpen}
+            toggleSidebar={toggleMobileMenu}
+          />
         )}
-        
       </div>
     </header>
   );
