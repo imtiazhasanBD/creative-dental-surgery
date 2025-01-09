@@ -3,8 +3,6 @@ import React from "react";
 import SectionHeader from "../components/SectionHeader";
 import Image from "next/image";
 import { scrollToSection } from "../components/scrollToSection";
-import ImageComparisonSlider from "react-image-comparison-slider";
-import ImageSlider from "react-image-comparison-slider";
 import { ReactCompareSlider } from "react-compare-slider";
 
 const BeforeAndAfter = () => {
